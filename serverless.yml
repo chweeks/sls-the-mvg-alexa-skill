@@ -21,7 +21,9 @@ custom:
             - id: amzn1.ask.skill.d83a8970-466c-45c5-b1d6-da05874e5772
               manifest:
                   apis:
-                      custom: {}
+                      custom:
+                          endpoint:
+                              uri: arn:aws:lambda:us-east-1:842217692566:function:sls-google-maps-alexa-skill-dev-HomeToWork
                   publishingInformation:
                       locales:
                           en-US:
