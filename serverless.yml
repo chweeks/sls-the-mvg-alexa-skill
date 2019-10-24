@@ -1,0 +1,43 @@
+service: sls-google-maps-alexa-skill
+
+provider:
+    name: aws
+    runtime: nodejs10.x
+
+functions:
+    HomeToWork:
+        handler: handler.HomeToWork
+
+plugins:
+    - serverless-alexa-skills
+
+custom:
+    alexa:
+        vendorId: ${env:AMAZON_VENDOR_ID}
+        clientId: ${env:AMAZON_CLIENT_ID}
+        clientSecret: ${env:AMAZON_CLIENT_SECRET}
+        localServerPort: 9000
+        skills:
+            - id: amzn1.ask.skill.d83a8970-466c-45c5-b1d6-da05874e5772
+              manifest:
+                  apis:
+                      custom: {}
+                  publishingInformation:
+                      locales:
+                          en-US:
+                              name: Herr MVG
+              models:
+                  en-US:
+                      interactionModel:
+                          languageModel:
+                              invocationName: the mvg
+                              intents:
+                                  - name: HomeToWorkIntent
+                                    samples:
+                                        - 'whens the next train to work'
+                                  - name: AMAZON.HelpIntent
+                                    samples: []
+                                  - name: AMAZON.CancelIntent
+                                    samples: []
+                                  - name: AMAZON.StopIntent
+                                    samples: []
